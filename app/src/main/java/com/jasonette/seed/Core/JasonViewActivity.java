@@ -125,6 +125,16 @@ public class JasonViewActivity extends AppCompatActivity implements ActivityComp
     public JSONObject agents = new JSONObject();
     private boolean isexecuting = false;
 
+    protected void setStatusBarColor(String statusColor) {
+        Log.i("STATUS_COLOR", ":" + statusColor);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(JasonHelper.parse_color(statusColor));
+        }
+
+    }
+
     /*************************************************************
      *
      * JASON ACTIVITY LIFECYCLE MANAGEMENT
@@ -269,6 +279,8 @@ public class JasonViewActivity extends AppCompatActivity implements ActivityComp
                 if (launch_url != null && launch_url.length() > 0) {
                     // if preload is specified, use that url
                     preload = (JSONObject)JasonHelper.read_json(launch_url, JasonViewActivity.this);
+
+                    Log.i("launch_url", ":" + launch_url);
                 } else {
                     preload = null;
                 }
@@ -2074,12 +2086,12 @@ public class JasonViewActivity extends AppCompatActivity implements ActivityComp
         });
     }
 
-
-
     private void setup_header(JSONObject header){
         try{
             String backgroundColor = header.getJSONObject("style").getString("background");
             toolbar.setBackgroundColor(JasonHelper.parse_color(backgroundColor));
+            String statusColor = header.getJSONObject("style").getString("status");
+            setStatusBarColor(statusColor);
         } catch (Exception e){
             Log.d("Warning", e.getStackTrace()[0].getMethodName() + " : " + e.toString());
         }
