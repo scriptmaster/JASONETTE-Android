@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Awesome</string>
-    <string name="url">https://msheriff.com/json/1.json</string>
+    <string name="url">https://msheriff.com/msh/1</string>
     <string name="launch">file://preload.json</string>
 </resources>

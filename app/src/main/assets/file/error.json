@@ -4,6 +4,11 @@
       "title": "Error Loading Screen"
     },
     "body": {
+      "header": {
+        "style": {
+          "status": "#005522"
+        }
+      },
       "layers": [
         {
           "type": "label",
