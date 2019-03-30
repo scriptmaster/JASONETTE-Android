@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.msheriff.uploadAndDownload"
+        applicationId "com.msheriff.msh"
         minSdkVersion 17
         targetSdkVersion 27
         versionCode 3
@@ -12,8 +12,19 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+
+    signingConfigs {
+        release {
+		storeFile file(STORE_FILE)
+		storePassword STORE_PWD
+		keyAlias KEY_ALIAS
+		keyPassword KEY_PWD
+	}
+    }
+
     buildTypes {
         release {
+	    signingConfig signingConfigs.release
             debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
